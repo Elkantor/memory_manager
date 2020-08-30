@@ -1,3 +1,3 @@
 all:
-	@gcc -Wall main.c
+	@gcc -Wall -Werror main.c
 	@a.exe
