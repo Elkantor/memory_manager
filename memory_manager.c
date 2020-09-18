@@ -14,13 +14,13 @@
     // For Release
     #define memory_manager_dealloc(pointer)                             memory_manager_dealloc_release((void*) pointer)
     #define memory_manager_alloc(variable_type, variable_name, number)\
-        variable_type* variable_name = memory_manager_alloc_release(sizeof(variable_type) * number);\
+        variable_type* variable_name = memory_manager_alloc_release((sizeof(variable_type) * (number)));\
         defer { memory_manager_dealloc(variable_name); }
 #else
     // For Debug
     #define memory_manager_dealloc(pointer)                             memory_manager_dealloc_debug((void*) pointer, __LINE__, __FILE__, #pointer)
     #define memory_manager_alloc(variable_type, variable_name, number)\
-        variable_type* variable_name = memory_manager_alloc_debug(sizeof(variable_type) * number, __LINE__, __FILE__, #variable_name);\
+        variable_type* variable_name = memory_manager_alloc_debug((sizeof(variable_type) * (number)), __LINE__, __FILE__, #variable_name);\
         defer { memory_manager_dealloc(variable_name); }
 #endif
 
